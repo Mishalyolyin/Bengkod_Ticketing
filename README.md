@@ -79,7 +79,7 @@ DB_PORT=3306
 DB_DATABASE=ticketing
 DB_USERNAME=root
 DB_PASSWORD=
-```
+
 
 Lalu:
 ```bash
