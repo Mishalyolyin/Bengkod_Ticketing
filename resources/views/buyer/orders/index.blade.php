@@ -14,6 +14,13 @@
     <div class="py-10">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
 
+            @if (session('success'))
+                <div class="card p-5 border border-emerald-200 bg-emerald-50/70">
+                    <div class="font-extrabold text-emerald-800">Berhasil ✅</div>
+                    <div class="text-sm text-emerald-700 mt-0.5">{{ session('success') }}</div>
+                </div>
+            @endif
+
             <div class="card p-5">
                 <div class="flex items-center justify-between">
                     <div class="text-sm text-slate-600">
@@ -31,15 +38,28 @@
                                 <div class="text-xs text-slate-500">
                                     {{ optional($o->order_date)->format('d M Y H:i') ?? $o->created_at?->format('d M Y H:i') }}
                                 </div>
+
                                 <div class="text-lg font-extrabold text-ink truncate mt-1">
                                     {{ $o->event?->judul ?? 'Event' }}
                                 </div>
+
                                 <div class="text-sm text-slate-600 mt-1">
                                     Total:
                                     <span class="font-extrabold text-ink">Rp {{ number_format((int)$o->total_price, 0, ',', '.') }}</span>
                                 </div>
+
                                 <div class="text-xs text-slate-500 mt-1">
                                     Item: {{ $o->detailOrders->sum('jumlah') }}
+                                </div>
+
+                                {{-- NEW: Metode Pembayaran --}}
+                                <div class="mt-3">
+                                    <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-700">
+                                        Metode:
+                                        <span class="ml-1 text-slate-900">
+                                            {{ $o->paymentType?->name ?? 'Belum dipilih' }}
+                                        </span>
+                                    </span>
                                 </div>
                             </div>
 

@@ -8,10 +8,19 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Order extends Model
 {
-    protected $fillable = ['user_id', 'event_id', 'order_date', 'total_price'];
+    protected $fillable = [
+        'user_id',
+        'event_id',
+        'order_date',
+        'total_price',
+        'payment_type_id',
+        'status',
+        'paid_at',
+    ];
 
     protected $casts = [
         'order_date'  => 'datetime',
+        'paid_at'     => 'datetime',
         'total_price' => 'decimal:2',
     ];
 
@@ -25,16 +34,19 @@ class Order extends Model
         return $this->belongsTo(Event::class, 'event_id');
     }
 
-    // ✅ Canonical: dipakai buyer views ($order->detailOrders)
+    public function paymentType(): BelongsTo
+    {
+        return $this->belongsTo(PaymentType::class, 'payment_type_id');
+    }
+
     public function detailOrders(): HasMany
     {
         return $this->hasMany(DetailOrder::class, 'order_id');
     }
 
-    // ✅ Backward-compat: biar AdminOrderController lama yang pakai details() tetap aman
+    // backward-compat
     public function details(): HasMany
     {
         return $this->detailOrders();
     }
 }
-    

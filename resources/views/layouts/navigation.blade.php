@@ -59,6 +59,13 @@
                                     {{ __('Transaksi') }}
                                 </x-nav-link>
                             @endif
+
+                            {{-- Tipe Pembayaran (NEW) --}}
+                            @if(Route::has('admin.payment-types.index'))
+                                <x-nav-link :href="route('admin.payment-types.index')" :active="request()->routeIs('admin.payment-types.*')">
+                                    {{ __('Tipe Pembayaran') }}
+                                </x-nav-link>
+                            @endif
                         @else
                             {{-- Buyer Orders --}}
                             @if(Route::has('buyer.orders.index'))
@@ -129,6 +136,13 @@
                                 @if(Route::has('admin.orders.index'))
                                     <x-dropdown-link :href="route('admin.orders.index')">
                                         {{ __('Transaksi') }}
+                                    </x-dropdown-link>
+                                @endif
+
+                                {{-- Tipe Pembayaran (NEW) --}}
+                                @if(Route::has('admin.payment-types.index'))
+                                    <x-dropdown-link :href="route('admin.payment-types.index')">
+                                        {{ __('Tipe Pembayaran') }}
                                     </x-dropdown-link>
                                 @endif
                             @else
@@ -213,6 +227,13 @@
                     @if(Route::has('admin.orders.index'))
                         <x-responsive-nav-link :href="route('admin.orders.index')" :active="request()->routeIs('admin.orders.*')">
                             {{ __('Transaksi') }}
+                        </x-responsive-nav-link>
+                    @endif
+
+                    {{-- Tipe Pembayaran (NEW) --}}
+                    @if(Route::has('admin.payment-types.index'))
+                        <x-responsive-nav-link :href="route('admin.payment-types.index')" :active="request()->routeIs('admin.payment-types.*')">
+                            {{ __('Tipe Pembayaran') }}
                         </x-responsive-nav-link>
                     @endif
                 @else

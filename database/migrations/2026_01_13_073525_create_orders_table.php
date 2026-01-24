@@ -20,8 +20,15 @@ return new class extends Migration {
                 ->cascadeOnUpdate()
                 ->restrictOnDelete();
 
+            // metode pembayaran (nggak pakai FK constraint biar aman urutan migration kamu)
+            $table->foreignId('payment_type_id')->nullable()->index();
+
             $table->dateTime('order_date');
             $table->decimal('total_price', 12, 2)->default(0);
+
+            // ini yang bikin tombol "Bayar Sekarang" ga error
+            $table->string('status')->default('pending')->index(); // pending | paid
+            $table->timestamp('paid_at')->nullable();
 
             $table->timestamps();
 

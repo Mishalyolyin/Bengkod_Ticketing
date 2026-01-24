@@ -3,7 +3,7 @@
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <div>
                 <h2 class="font-extrabold text-xl text-ink">Admin Dashboard</h2>
-                <p class="text-sm text-slate-500">Ringkasan cepat TIXORA. Biar admin nggak kerja pakai feeling.</p>
+                <!-- <p class="text-sm text-slate-500">Ringkasan cepat TIXORA. Biar admin nggak kerja pakai feeling.</p> -->
             </div>
             <div class="flex gap-2">
                 <a href="{{ route('admin.kategori.index') }}" class="btn-primary">📁 Kelola Kategori</a>
