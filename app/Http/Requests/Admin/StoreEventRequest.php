@@ -17,7 +17,7 @@ class StoreEventRequest extends FormRequest
             'kategori_id' => ['required', 'exists:kategoris,id'],
             'judul'       => ['required', 'string', 'max:255'],
             'deskripsi'   => ['required', 'string'],
-            'lokasi'      => ['required', 'string', 'max:255'],
+            'lokasi'      => ['required', 'string', 'max:255', 'exists:lokasis,nama_lokasi'], // ✅ FIX
             'waktu'       => ['required', 'date'],
             'gambar'      => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
         ];

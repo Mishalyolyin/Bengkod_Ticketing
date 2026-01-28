@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\EventController as AdminEventController;
 use App\Http\Controllers\Admin\AdminTiketController;
 use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\AdminPaymentTypeController;
+use App\Http\Controllers\Admin\AdminLokasiController; // ✅ NEW
 
 // Public / Buyer
 use App\Http\Controllers\Public\EventController as PublicEventController;
@@ -107,6 +108,9 @@ Route::prefix('admin')
 
         Route::resource('events', AdminEventController::class)->except(['show']);
         Route::resource('kategori', AdminKategoriController::class)->except(['show']);
+
+        // ✅ NEW: Management Lokasi CRUD
+        Route::resource('lokasi', AdminLokasiController::class)->except(['show']);
 
         // Admin transaksi
         Route::get('/orders', [AdminOrderController::class, 'index'])->name('orders.index');

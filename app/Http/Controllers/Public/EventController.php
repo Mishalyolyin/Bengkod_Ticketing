@@ -18,7 +18,8 @@ class EventController extends Controller
         $q = trim((string) $request->query('q', ''));
         $kategoriId = $request->query('kategori');
 
-        $events = Event::with('kategori')
+        // ✅ FIX: eager load tikets biar view bisa nampilin min price + stok tanpa N+1
+        $events = Event::with(['kategori', 'tikets'])
             ->when($q !== '', function ($query) use ($q) {
                 $query->where(function ($sub) use ($q) {
                     $sub->where('judul', 'like', "%{$q}%")

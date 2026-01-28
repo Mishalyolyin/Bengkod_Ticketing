@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\StoreEventRequest;
 use App\Http\Requests\Admin\UpdateEventRequest;
 use App\Models\Event;
 use App\Models\Kategori;
+use App\Models\Lokasi; // ✅ tambah
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -33,7 +34,6 @@ class EventController extends Controller
 
         $kategoris = Kategori::orderBy('nama')->get(['id', 'nama']);
 
-        // buat dropdown tambah tiket: ambil semua event (bukan cuma yang paginasi)
         $allEvents = Event::orderByDesc('waktu')->get(['id', 'judul', 'waktu']);
 
         return view('admin.events.index', compact('events', 'kategoris', 'allEvents', 'q', 'kategoriId'));
@@ -42,14 +42,14 @@ class EventController extends Controller
     public function create()
     {
         $kategoris = Kategori::orderBy('nama')->get(['id', 'nama']);
-        return view('admin.events.create', compact('kategoris'));
+        $lokasis   = Lokasi::orderBy('nama_lokasi')->get(['id','nama_lokasi']); // ✅ tambah
+        return view('admin.events.create', compact('kategoris', 'lokasis'));
     }
 
     public function store(StoreEventRequest $request)
     {
         $data = $request->validated();
 
-        // kolom FK di migration: user_id
         $data['user_id'] = auth()->id();
 
         if ($request->hasFile('gambar')) {
@@ -66,7 +66,8 @@ class EventController extends Controller
     public function edit(Event $event)
     {
         $kategoris = Kategori::orderBy('nama')->get(['id', 'nama']);
-        return view('admin.events.edit', compact('event', 'kategoris'));
+        $lokasis   = Lokasi::orderBy('nama_lokasi')->get(['id','nama_lokasi']); // ✅ tambah
+        return view('admin.events.edit', compact('event', 'kategoris', 'lokasis'));
     }
 
     public function update(UpdateEventRequest $request, Event $event)
@@ -74,7 +75,6 @@ class EventController extends Controller
         $data = $request->validated();
 
         if ($request->hasFile('gambar')) {
-            // hapus poster lama kalau ada
             if ($event->gambar && Storage::disk('public')->exists($event->gambar)) {
                 Storage::disk('public')->delete($event->gambar);
             }
@@ -90,12 +90,6 @@ class EventController extends Controller
 
     public function destroy(Event $event)
     {
-        /**
-         * Safe delete rules:
-         * 1) Kalau event sudah punya order, gak boleh dihapus.
-         * 2) Kalau ada tiket event ini yang sudah pernah kebeli (ada detail_orders), gak boleh hapus juga.
-         *    (lebih ketat dan lebih aman buat demo + data integrity)
-         */
         $hasOrders = $event->orders()->exists();
 
         $hasPurchasedTickets = DB::table('detail_orders')
@@ -107,10 +101,8 @@ class EventController extends Controller
             return back()->with('error', 'Event tidak bisa dihapus karena sudah memiliki transaksi / tiketnya sudah pernah dibeli.');
         }
 
-        // hapus tiket event (kalau belum ada transaksi, harusnya aman)
         $event->tikets()->delete();
 
-        // hapus poster
         if ($event->gambar && Storage::disk('public')->exists($event->gambar)) {
             Storage::disk('public')->delete($event->gambar);
         }

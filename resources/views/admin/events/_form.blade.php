@@ -31,11 +31,18 @@
         @error('deskripsi') <p class="text-sm text-red-600 mt-1">{{ $message }}</p> @enderror
     </div>
 
+    {{-- ✅ FIX: Lokasi dropdown dari tabel lokasis --}}
     <div>
         <label class="block text-sm font-medium text-gray-700">Lokasi</label>
-        <input type="text" name="lokasi" value="{{ old('lokasi', $event->lokasi ?? '') }}"
-               class="mt-1 w-full rounded-lg border-gray-200 focus:border-gray-400 focus:ring-gray-400"
-               placeholder="Contoh: Sam Poo Kong, Semarang">
+        <select name="lokasi" class="mt-1 w-full rounded-lg border-gray-200 focus:border-gray-400 focus:ring-gray-400">
+            <option value="">-- Pilih Lokasi --</option>
+            @foreach($lokasis as $l)
+                <option value="{{ $l->nama_lokasi }}"
+                    @selected(old('lokasi', $event->lokasi ?? '') == $l->nama_lokasi)>
+                    {{ $l->nama_lokasi }}
+                </option>
+            @endforeach
+        </select>
         @error('lokasi') <p class="text-sm text-red-600 mt-1">{{ $message }}</p> @enderror
     </div>
 

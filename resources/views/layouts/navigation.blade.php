@@ -53,6 +53,13 @@
                                 </x-nav-link>
                             @endif
 
+                            {{-- ✅ Management Lokasi (NEW) --}}
+                            @if(Route::has('admin.lokasi.index'))
+                                <x-nav-link :href="route('admin.lokasi.index')" :active="request()->routeIs('admin.lokasi.*')">
+                                    {{ __('Management Lokasi') }}
+                                </x-nav-link>
+                            @endif
+
                             {{-- Transaksi --}}
                             @if(Route::has('admin.orders.index'))
                                 <x-nav-link :href="route('admin.orders.index')" :active="request()->routeIs('admin.orders.*')">
@@ -130,6 +137,13 @@
                                 @if(Route::has('admin.kategori.index'))
                                     <x-dropdown-link :href="route('admin.kategori.index')">
                                         {{ __('Kategori') }}
+                                    </x-dropdown-link>
+                                @endif
+
+                                {{-- ✅ Management Lokasi (NEW) --}}
+                                @if(Route::has('admin.lokasi.index'))
+                                    <x-dropdown-link :href="route('admin.lokasi.index')">
+                                        {{ __('Management Lokasi') }}
                                     </x-dropdown-link>
                                 @endif
 
@@ -221,6 +235,13 @@
                     @if(Route::has('admin.kategori.index'))
                         <x-responsive-nav-link :href="route('admin.kategori.index')" :active="request()->routeIs('admin.kategori.*')">
                             {{ __('Kategori') }}
+                        </x-responsive-nav-link>
+                    @endif
+
+                    {{-- ✅ Management Lokasi (NEW) --}}
+                    @if(Route::has('admin.lokasi.index'))
+                        <x-responsive-nav-link :href="route('admin.lokasi.index')" :active="request()->routeIs('admin.lokasi.*')">
+                            {{ __('Management Lokasi') }}
                         </x-responsive-nav-link>
                     @endif
 

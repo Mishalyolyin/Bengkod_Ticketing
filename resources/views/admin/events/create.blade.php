@@ -8,7 +8,11 @@
             <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
 
                 <form action="{{ route('admin.events.store') }}" method="POST" enctype="multipart/form-data">
-                    @include('admin.events._form', ['event' => null, 'kategoris' => $kategoris])
+                    @include('admin.events._form', [
+                        'event' => null,
+                        'kategoris' => $kategoris,
+                        'lokasis' => $lokasis
+                    ])
                 </form>
 
             </div>

@@ -6,13 +6,15 @@
     <div class="py-8">
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-                
-                {{-- WAJIB: method POST + spoof PUT --}}
+
                 <form action="{{ route('admin.events.update', $event) }}" method="POST" enctype="multipart/form-data">
                     @method('PUT')
 
-                    {{-- ini include form kamu yang sudah ada --}}
-                    @include('admin.events._form', ['event' => $event, 'kategoris' => $kategoris])
+                    @include('admin.events._form', [
+                        'event' => $event,
+                        'kategoris' => $kategoris,
+                        'lokasis' => $lokasis
+                    ])
                 </form>
 
             </div>

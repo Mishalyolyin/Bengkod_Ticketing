@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             TicketingSeeder::class,
             PaymentTypeSeeder::class,
+            LokasiSeeder::class,
         ]);
 
         // Aman: kalau sudah ada, tidak insert ulang
