@@ -64,6 +64,7 @@ class TicketingSeeder extends Seeder
                 'judul' => $e['judul'],
                 'deskripsi' => 'Event resmi dengan tiket terbatas. Amankan tiketmu sebelum kehabisan.',
                 'lokasi' => $e['lokasi'],
+                'kota' => 'Semarang',
                 'waktu' => Carbon::now()->addDays($e['hari'])->setTime(19, 0),
                 'gambar' => null,
             ]);

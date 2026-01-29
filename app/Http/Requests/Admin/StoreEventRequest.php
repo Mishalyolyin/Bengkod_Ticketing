@@ -16,10 +16,13 @@ class StoreEventRequest extends FormRequest
         return [
             'kategori_id' => ['required', 'exists:kategoris,id'],
             'judul'       => ['required', 'string', 'max:255'],
-            'deskripsi'   => ['required', 'string'],
-            'lokasi'      => ['required', 'string', 'max:255', 'exists:lokasis,nama_lokasi'], // ✅ FIX
+            'deskripsi'   => ['nullable', 'string'],
+
+            'lokasi_id'   => ['required', 'exists:lokasis,id'],
+            'kota'        => ['required', 'string', 'max:255'],
+
             'waktu'       => ['required', 'date'],
-            'gambar'      => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
+            'gambar'      => ['nullable', 'image', 'max:2048'],
         ];
     }
 }

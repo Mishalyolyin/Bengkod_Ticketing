@@ -15,6 +15,7 @@ class Event extends Model
         'judul',
         'deskripsi',
         'lokasi',
+        'kota', 
         'waktu',
         'gambar',
     ];

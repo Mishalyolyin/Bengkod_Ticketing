@@ -22,13 +22,24 @@ return new class extends Migration {
 
             $table->string('judul');
             $table->text('deskripsi')->nullable();
+
+            // ✅ lokasi = venue/tempat spesifik (dropdown dari tabel lokasis)
             $table->string('lokasi')->nullable();
+
+            // ✅ kota = admin ketik manual (Semarang, Jakarta, dll)
+            $table->string('kota')->nullable();
+
             $table->dateTime('waktu');
-            $table->string('gambar')->nullable(); // simpan path gambar
+
+            // simpan path gambar
+            $table->string('gambar')->nullable();
 
             $table->timestamps();
 
+            // index biar query filter/urutan makin sat set
             $table->index(['kategori_id', 'waktu']);
+            $table->index(['kota']);
+            $table->index(['lokasi']);
         });
     }
 
