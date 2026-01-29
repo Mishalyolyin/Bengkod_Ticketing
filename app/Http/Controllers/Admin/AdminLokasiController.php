@@ -70,7 +70,7 @@ class AdminLokasiController extends Controller
             return back()->with('error', 'Lokasi tidak bisa dihapus karena masih dipakai Event.');
         }
 
-        $lokasi->delete();
+        $lokasi->update(['aktif' => 'N']);
 
         return redirect()->route('admin.lokasi.index')
             ->with('success', 'Lokasi berhasil dihapus 🗑️');

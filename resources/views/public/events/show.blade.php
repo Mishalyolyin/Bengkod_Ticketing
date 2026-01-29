@@ -38,6 +38,7 @@
                 <div class="p-5">
                     <div class="text-xs text-slate-500">Lokasi</div>
                     <div class="font-extrabold text-ink mt-1">📍 {{ $event->lokasi ?? '-' }}</div>
+                    <div class="text-xs text-slate-500 mt-1">{{ $event->kota }}</div>
 
                     <div class="mt-4 text-xs text-slate-500">Waktu</div>
                     <div class="font-extrabold text-ink mt-1">
@@ -107,10 +108,10 @@
                                 </button>
                             @else
                                 <a href="{{ route('login') }}" class="btn-primary w-full sm:w-auto text-center">
-                                    Login dulu buat Checkout
+                                    Login untuk Memesan
                                 </a>
                                 <a href="{{ route('register') }}" class="btn-ghost w-full sm:w-auto text-center">
-                                    Belum punya akun? Register
+                                    Belum punya akun? Daftar
                                 </a>
                             @endauth
                         </div>

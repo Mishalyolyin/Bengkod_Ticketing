@@ -67,7 +67,7 @@ class OrderController extends Controller
 
         return redirect()
             ->route('buyer.orders.success', $order)
-            ->with('success', 'Pembayaran berhasil ✅ (Simulasi)');
+            ->with('success', 'Pembayaran berhasil (Simulasi).');
     }
 
     public function success(Order $order)

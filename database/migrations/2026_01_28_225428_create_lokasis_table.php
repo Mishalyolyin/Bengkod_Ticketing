@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('lokasis', function (Blueprint $table) {
             $table->id();
             $table->string('nama_lokasi', 255);
+            $table->char('aktif', 1)->default('Y');
             $table->timestamps();
             $table->unique('nama_lokasi');
         });

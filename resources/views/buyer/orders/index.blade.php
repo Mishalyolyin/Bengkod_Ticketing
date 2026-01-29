@@ -68,7 +68,8 @@
                                     </td>
 
                                     <td class="py-3 px-4 text-gray-700">
-                                        📍 {{ $o->event?->lokasi ?? '-' }}
+                                        <div>📍 {{ $o->event?->lokasi ?? '-' }}</div>
+                                        <div class="text-xs text-gray-500 ml-5">{{ $o->event?->kota }}</div>
                                     </td>
 
                                     <td class="py-3 px-4">
@@ -93,7 +94,7 @@
                                     <td colspan="6" class="py-14 text-center">
                                         <div class="text-gray-800 font-extrabold">Belum ada order</div>
                                         <div class="text-sm text-gray-500 mt-1">
-                                            Yuk cari event dulu, biar hidup ada plot twist-nya 😭
+                                            Silakan cari dan pesan tiket event terlebih dahulu.
                                         </div>
                                         <div class="mt-4">
                                             <a href="{{ route('public.events.index') }}" class="btn-primary">Jelajahi Event</a>

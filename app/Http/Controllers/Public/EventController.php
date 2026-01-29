@@ -126,7 +126,7 @@ class EventController extends Controller
 
             return redirect()
                 ->route('buyer.orders.show', $order)
-                ->with('success', 'Checkout berhasil ✅ Pesanan kamu sudah tercatat.');
+                ->with('success', 'Checkout berhasil. Pesanan Anda telah tercatat.');
         });
     }
 }

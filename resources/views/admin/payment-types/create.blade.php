@@ -34,13 +34,13 @@
                 <div class="card lg:col-span-1">
                     <div class="font-semibold text-gray-800">Tips</div>
                     <p class="text-sm text-gray-500 mt-1">
-                        Biar rapi, pakai nama yang konsisten dan singkat.
+                        Gunakan nama yang konsisten dan singkat agar lebih rapi.
                     </p>
 
                     <div class="mt-4 space-y-2 text-sm">
                         <div class="flex items-start gap-2">
                             <span class="mt-0.5 text-emerald-600">●</span>
-                            <span><b>Unik</b> (nggak boleh dobel)</span>
+                            <span><b>Unik</b> (tidak boleh duplikat)</span>
                         </div>
                         <div class="flex items-start gap-2">
                             <span class="mt-0.5 text-emerald-600">●</span>
@@ -48,7 +48,7 @@
                         </div>
                         <div class="flex items-start gap-2">
                             <span class="mt-0.5 text-emerald-600">●</span>
-                            <span>Nanti ini bisa kamu pakai buat checkout (kalau mau lanjut fitur).</span>
+                            <span>Tipe pembayaran ini akan digunakan saat checkout.</span>
                         </div>
                     </div>
                 </div>

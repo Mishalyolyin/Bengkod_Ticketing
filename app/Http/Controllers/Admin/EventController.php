@@ -50,6 +50,11 @@ class EventController extends Controller
     {
         $data = $request->validated();
 
+        // Ambil nama lokasi dari ID yang dikirim (FIX: lokasi disimpan sebagai string)
+        $lokasiName = Lokasi::findOrFail($data['lokasi_id'])->nama_lokasi;
+        $data['lokasi'] = $lokasiName;
+        unset($data['lokasi_id']);
+
         $data['user_id'] = auth()->id();
 
         if ($request->hasFile('gambar')) {
@@ -66,13 +71,24 @@ class EventController extends Controller
     public function edit(Event $event)
     {
         $kategoris = Kategori::orderBy('nama')->get(['id', 'nama']);
-        $lokasis   = Lokasi::orderBy('nama_lokasi')->get(['id','nama_lokasi']); // ✅ tambah
+        $lokasis   = Lokasi::where('aktif', 'Y')->orderBy('nama_lokasi')->get(['id','nama_lokasi']); // ✅ filter aktif
+        
+        // Jika event punya lokasi yang sekarang sudah tidak aktif (atau string manual), kita tetap butuh ID-nya jika ada di DB
+        // Cari lokasi berdasarkan nama yang tersimpan di event
+        $currentLokasi = Lokasi::where('nama_lokasi', $event->lokasi)->first();
+        $event->lokasi_id = $currentLokasi?->id; // Inject attribute sementara untuk form binding
+
         return view('admin.events.edit', compact('event', 'kategoris', 'lokasis'));
     }
 
     public function update(UpdateEventRequest $request, Event $event)
     {
         $data = $request->validated();
+
+        // Ambil nama lokasi dari ID yang dikirim
+        $lokasiName = Lokasi::findOrFail($data['lokasi_id'])->nama_lokasi;
+        $data['lokasi'] = $lokasiName;
+        unset($data['lokasi_id']); // Hapus ID karena tidak disimpan di tabel events
 
         if ($request->hasFile('gambar')) {
             if ($event->gambar && Storage::disk('public')->exists($event->gambar)) {

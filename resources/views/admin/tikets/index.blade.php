@@ -92,7 +92,7 @@
                         @empty
                             <tr>
                                 <td colspan="6" class="p-6 text-center text-gray-500">
-                                    Belum ada tiket untuk event ini. Tambahin dulu biar bisa checkout 😈
+                                    Belum ada tiket untuk event ini. Silakan tambah tiket baru.
                                 </td>
                             </tr>
                         @endforelse

@@ -46,20 +46,6 @@
                                 </x-nav-link>
                             @endif
 
-                            {{-- Kategori --}}
-                            @if(Route::has('admin.kategori.index'))
-                                <x-nav-link :href="route('admin.kategori.index')" :active="request()->routeIs('admin.kategori.*')">
-                                    {{ __('Kategori') }}
-                                </x-nav-link>
-                            @endif
-
-                            {{-- ✅ Management Lokasi (NEW) --}}
-                            @if(Route::has('admin.lokasi.index'))
-                                <x-nav-link :href="route('admin.lokasi.index')" :active="request()->routeIs('admin.lokasi.*')">
-                                    {{ __('Management Lokasi') }}
-                                </x-nav-link>
-                            @endif
-
                             {{-- Transaksi --}}
                             @if(Route::has('admin.orders.index'))
                                 <x-nav-link :href="route('admin.orders.index')" :active="request()->routeIs('admin.orders.*')">
@@ -67,12 +53,39 @@
                                 </x-nav-link>
                             @endif
 
-                            {{-- Tipe Pembayaran (NEW) --}}
-                            @if(Route::has('admin.payment-types.index'))
-                                <x-nav-link :href="route('admin.payment-types.index')" :active="request()->routeIs('admin.payment-types.*')">
-                                    {{ __('Tipe Pembayaran') }}
-                                </x-nav-link>
-                            @endif
+                            {{-- Master Data Dropdown --}}
+                            <div class="hidden sm:flex sm:items-center">
+                                <x-dropdown align="left" width="48">
+                                    <x-slot name="trigger">
+                                        <button class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out h-16">
+                                            <div>Master Data</div>
+                                            <div class="ms-1">
+                                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                                </svg>
+                                            </div>
+                                        </button>
+                                    </x-slot>
+
+                                    <x-slot name="content">
+                                        @if(Route::has('admin.kategori.index'))
+                                            <x-dropdown-link :href="route('admin.kategori.index')">
+                                                {{ __('Kategori') }}
+                                            </x-dropdown-link>
+                                        @endif
+                                        @if(Route::has('admin.lokasi.index'))
+                                            <x-dropdown-link :href="route('admin.lokasi.index')">
+                                                {{ __('Management Lokasi') }}
+                                            </x-dropdown-link>
+                                        @endif
+                                        @if(Route::has('admin.payment-types.index'))
+                                            <x-dropdown-link :href="route('admin.payment-types.index')">
+                                                {{ __('Tipe Pembayaran') }}
+                                            </x-dropdown-link>
+                                        @endif
+                                    </x-slot>
+                                </x-dropdown>
+                            </div>
                         @else
                             {{-- Buyer Orders --}}
                             @if(Route::has('buyer.orders.index'))

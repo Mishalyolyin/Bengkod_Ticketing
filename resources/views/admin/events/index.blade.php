@@ -121,7 +121,7 @@
 
                                 <td class="p-3">
                                     <div class="font-semibold text-gray-900">{{ $event->judul }}</div>
-                                    <div class="text-xs text-gray-500">{{ $event->lokasi }}</div>
+                                    <div class="text-xs text-gray-500">{{ $event->lokasi }} ({{ $event->kota }})</div>
                                 </td>
 
                                 <td class="p-3">
@@ -130,12 +130,14 @@
                                     </span>
                                 </td>
 
-                                <td class="p-3 text-gray-700">
-                                    {{ optional($event->waktu)->format('d M Y H:i') }}
+                                <td class="p-3">
+                                    <div class="font-semibold text-gray-900">{{ $event->waktu?->format('d M Y') }}</div>
+                                    <div class="text-xs text-gray-500">{{ $event->waktu?->format('H:i') }} WIB</div>
                                 </td>
-
-                                <td class="p-3 text-center font-semibold">
-                                    {{ $event->tikets_count }}
+                                <td class="p-3 text-center">
+                                    <span class="px-2 py-1 rounded bg-blue-50 text-blue-700 font-semibold text-xs">
+                                        {{ $event->tikets_count }}
+                                    </span>
                                 </td>
 
                                 <td class="p-3 text-center font-semibold">
@@ -166,7 +168,7 @@
 
                                     @if($event->orders_count > 0)
                                         <div class="text-xs text-gray-500 mt-2">
-                                            *Udah ada transaksi → gak bisa dihapus.
+                                            *Event memiliki transaksi aktif, tidak dapat dihapus.
                                         </div>
                                     @endif
                                 </td>
@@ -174,7 +176,7 @@
                         @empty
                             <tr>
                                 <td colspan="7" class="p-6 text-center text-gray-500">
-                                    Belum ada event. Yuk bikin dulu 🚀
+                                    Belum ada event. Silakan tambah event baru.
                                 </td>
                             </tr>
                         @endforelse

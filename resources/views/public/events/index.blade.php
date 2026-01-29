@@ -5,7 +5,7 @@
                 <div class="text-xs text-slate-500">Public / Events</div>
                 <h1 class="text-3xl font-extrabold text-ink mt-1">Jelajahi Event</h1>
                 <p class="text-sm text-slate-600 mt-1">
-                    Cari event berdasarkan judul atau lokasi. Iya, lokasi sekarang kelihatan, bukan gaib lagi 👻
+                    Cari event berdasarkan judul atau lokasi. Temukan berbagai event menarik di sekitar Anda.
                 </p>
             </div>
 
@@ -74,6 +74,7 @@
 
                         <div class="mt-2 text-sm text-slate-600 space-y-1">
                             <div>📍 <span class="font-semibold text-slate-700">{{ $event->lokasi ?? '-' }}</span></div>
+                            <div class="text-xs text-slate-500 ml-5">{{ $event->kota }}</div>
                             <div>🗓️ {{ optional($event->waktu)->format('D, d M Y') ?? '-' }}
                                 <span class="text-slate-400">•</span>
                                 {{ optional($event->waktu)->format('H:i') ?? '-' }}

@@ -9,5 +9,5 @@ class Lokasi extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nama_lokasi'];
+    protected $fillable = ['nama_lokasi', 'aktif'];
 }

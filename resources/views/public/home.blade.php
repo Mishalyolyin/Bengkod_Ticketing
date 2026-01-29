@@ -56,18 +56,18 @@
 
                     <a href="{{ route('public.events.index') }}" class="card p-4 hover:shadow-md transition">
                         <div class="text-xs text-slate-500">Checkout</div>
-                        <div class="font-bold text-ink">Cepat, anti ribet</div>
+                        <div class="font-bold text-ink">Cepat & Mudah</div>
                     </a>
 
                     @auth
                         <a href="{{ route('buyer.orders.index') }}" class="card p-4 hover:shadow-md transition">
                             <div class="text-xs text-slate-500">Riwayat</div>
-                            <div class="font-bold text-ink">Transaksi tercatat</div>
+                            <div class="font-bold text-ink">Riwayat Transaksi</div>
                         </a>
                     @else
                         <a href="{{ route('login') }}" class="card p-4 hover:shadow-md transition">
                             <div class="text-xs text-slate-500">Riwayat</div>
-                            <div class="font-bold text-ink">Login dulu ya 😭</div>
+                            <div class="font-bold text-ink">Login Dahulu</div>
                         </a>
                     @endauth
                 </div>
@@ -107,6 +107,7 @@
                     <div class="card p-4">
                         <div class="text-xs text-slate-500">Lokasi</div>
                         <div class="font-bold text-ink">{{ $featured->lokasi }}</div>
+                        <div class="text-xs text-slate-500 mt-1">{{ $featured->kota }}</div>
                     </div>
                     <div class="card p-4">
                         <div class="text-xs text-slate-500">Waktu</div>
@@ -188,6 +189,7 @@
                             <div class="card p-3">
                                 <div class="text-xs text-slate-500">Lokasi</div>
                                 <div class="font-bold text-ink">{{ $event->lokasi }}</div>
+                                <div class="text-xs text-slate-500 mt-1">{{ $event->kota }}</div>
                             </div>
                             <div class="card p-3">
                                 <div class="text-xs text-slate-500">Tanggal</div>

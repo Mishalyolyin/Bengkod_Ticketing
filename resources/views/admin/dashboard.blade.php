@@ -53,7 +53,7 @@
                                 <div>
                                     <div class="font-extrabold">{{ $e->judul }}</div>
                                     <div class="text-sm text-slate-500">
-                                        {{ $e->kategori->nama ?? 'Kategori' }} • {{ $e->lokasi ?? '-' }}
+                                        {{ $e->kategori->nama ?? 'Kategori' }} • {{ $e->lokasi ?? '-' }} ({{ $e->kota }})
                                     </div>
                                 </div>
                                 <div class="text-xs text-slate-500 text-right">

@@ -193,7 +193,7 @@
                                         <span>{{ optional($o->event?->waktu)->format('d M Y H:i') }}</span>
                                         @if($o->event?->lokasi)
                                             <span>•</span>
-                                            <span class="truncate max-w-[420px]">{{ $o->event->lokasi }}</span>
+                                            <span class="truncate max-w-[420px]">{{ $o->event->lokasi }} ({{ $o->event->kota }})</span>
                                         @endif
                                         <span>•</span>
                                         <span class="font-semibold text-ink/80">
